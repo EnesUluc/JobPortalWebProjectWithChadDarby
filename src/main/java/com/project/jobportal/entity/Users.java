@@ -24,7 +24,6 @@ public class Users {
     @Column(unique = true)
     private String email;
 
-    @NotEmpty
     private String password;
 
     private boolean isActive;

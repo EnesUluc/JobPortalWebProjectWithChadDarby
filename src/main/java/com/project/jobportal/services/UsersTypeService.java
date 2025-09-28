@@ -2,6 +2,7 @@ package com.project.jobportal.services;
 
 import com.project.jobportal.entity.UsersType;
 import com.project.jobportal.repository.UsersTypeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 public class UsersTypeService {
     private final UsersTypeRepository usersTypeRepository;
 
+    @Autowired
     UsersTypeService(UsersTypeRepository usersTypeRepository){
         this.usersTypeRepository = usersTypeRepository;
     }
