@@ -26,6 +26,7 @@ public class UsersService {
     private final JobSeekerProfileRepository jobSeekerProfileRepository;
     private final RecruiterProfileRepository recruiterProfileRepository;
     private final PasswordEncoder passwordEncoder;
+
     @Autowired
     UsersService(UsersRepository usersRepository, JobSeekerProfileRepository jobSeekerProfileRepository,
                  RecruiterProfileRepository recruiterProfileRepository, PasswordEncoder passwordEncoder){
