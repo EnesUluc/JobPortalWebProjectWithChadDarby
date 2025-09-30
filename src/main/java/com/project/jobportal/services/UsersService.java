@@ -78,6 +78,8 @@ public class UsersService {
             }
 
         }
+
+        System.out.println("User is null");
         return null;
     }
 }

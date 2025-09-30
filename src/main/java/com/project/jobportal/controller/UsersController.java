@@ -42,8 +42,8 @@ public class UsersController {
     @PostMapping("/register/new")
     public String userRegistration(@Valid DtoUsers dtoUsers, Model model){
 
-        Optional<Users> ifExist = usersService.checkEmail(dtoUsers.getEmail());
-        if(ifExist.isPresent()){
+        Optional<Users> optional = usersService.checkEmail(dtoUsers.getEmail());
+        if(optional.isPresent()){
             List<UsersType> usersTypes = usersTypeService.findAll();
             model.addAttribute("getAllTypes", usersTypes);
             model.addAttribute("user", new DtoUsers());
@@ -51,7 +51,7 @@ public class UsersController {
             return "register";
         }
         usersService.addNew(dtoUsers);
-        return "dashboard";
+        return "redirect:/login";
     }
 
     @GetMapping("/login")

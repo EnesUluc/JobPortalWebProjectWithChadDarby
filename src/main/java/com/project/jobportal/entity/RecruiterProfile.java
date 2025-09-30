@@ -24,10 +24,17 @@ public class RecruiterProfile {
     @Column(nullable = true, length = 64)
     private String profilePhoto;
 
+
     @OneToOne
     @JoinColumn(name = "user_account_id")
     @MapsId
     private Users userId;
+
+    @Transient
+    public String getPhotosImagePath(){
+        if(profilePhoto == null) return null;
+        return "/photos/recruiter/"+userAccountId+"/"+profilePhoto;
+    }
 
     public RecruiterProfile(Users user) {
         this.userId = user;

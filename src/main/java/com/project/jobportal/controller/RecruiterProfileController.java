@@ -5,6 +5,7 @@ import com.project.jobportal.entity.RecruiterProfile;
 import com.project.jobportal.entity.Users;
 import com.project.jobportal.repository.UsersRepository;
 import com.project.jobportal.services.RecruiterProfileService;
+import com.project.jobportal.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -48,7 +50,7 @@ public class RecruiterProfileController {
         return "recruiter_profile";
     }
 
-    @GetMapping("/addNew")
+    @PostMapping("/addNew")
     public String addNew(RecruiterProfile recruiterProfile,
                          @RequestParam("image") MultipartFile file,
                          Model model){
@@ -71,9 +73,16 @@ public class RecruiterProfileController {
         }
         RecruiterProfile savedUser = recruiterProfileService.addNew(recruiterProfile);
 
-        String uploadDir = "photos/recruiter/"+savedUser.getUserId();
-        // Continue
-        return "";
+        String uploadDir = "photos/recruiter/"+savedUser.getUserId().getUserId();
+
+        try{
+            System.out.println("File is saving");
+            FileUploadUtil.saveFile(uploadDir, fileName, file);
+            System.out.println("File saved");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "redirect:/dashboard/";
 
     }
 
