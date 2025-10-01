@@ -163,6 +163,10 @@ label > a :hover {
   color: white;
   font-size: 14px;
 }
+.non-hover:hover{
+    color: #fff !important;
+    cursor: pointer;
+}
 .copy-right {
   color: white;
   position: absolute;
