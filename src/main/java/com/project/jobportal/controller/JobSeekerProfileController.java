@@ -90,18 +90,15 @@ public class JobSeekerProfileController {
         String resumeName = "";
 
         if(!Objects.equals(image.getOriginalFilename(),"")){
-            System.out.println("Buraya girdiii.");
             imageName = StringUtils.cleanPath(
                     Objects.requireNonNull(image.getOriginalFilename())
             );
-            System.out.println("ImageName: "+imageName);
             jobSeekerProfile.setProfilePhoto(imageName);
         }
         if(!Objects.equals(pdf.getOriginalFilename(),"")){
             resumeName = StringUtils.cleanPath(
                     Objects.requireNonNull(pdf.getOriginalFilename())
             );
-            System.out.println("ResumeName: "+resumeName);
             jobSeekerProfile.setResume(resumeName);
         }
 
@@ -117,7 +114,6 @@ public class JobSeekerProfileController {
             }
         }catch(IOException e){
             throw  new RuntimeException(e);
-
         }
 
         return "redirect:/dashboard/";
