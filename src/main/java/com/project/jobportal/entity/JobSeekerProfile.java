@@ -10,11 +10,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "")
+@Table(name = "job_seeker_profile")
 public class JobSeekerProfile {
 
+    public JobSeekerProfile(Users userId) {
+        this.userId = userId;
+    }
+
     @Id
-    private int userAccountId;
+    private Integer userAccountId;
 
     private String firstName;
     private String lastName;
@@ -36,7 +40,10 @@ public class JobSeekerProfile {
             mappedBy = "jobSeekerProfile")
     List<Skills> skills;
 
-    public JobSeekerProfile(Users userId) {
-        this.userId = userId;
+    @Transient // Means don't send to db
+    public String getPhotosImagePath(){
+        if(profilePhoto == null || userAccountId == null) return null;
+        return "/photos/candidate/" + userAccountId + "/" + profilePhoto;
     }
+
 }

@@ -12,7 +12,7 @@ import lombok.*;
 public class Skills {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String experienceLevel;
     private String name;
